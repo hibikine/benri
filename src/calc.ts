@@ -41,6 +41,11 @@ const BScale: { [key: number]: { width: number; height: number } } = {
   9: { height: 64, width: 45 },
   10: { height: 45, width: 32 },
 };
+const isNameCard = (input: string) => /名刺|meishi|namecard/i.test(input);
+const NameCard = {
+  width: 91, // mm
+  height: 55, // mm
+};
 const isDpi = (t: string): boolean => /\d+dpi/i.test(t);
 const parse = (input: string[]) => {
   let width = 0;
@@ -64,6 +69,12 @@ const parse = (input: string[]) => {
       unit = 'px';
       width = Math.round((width / 25.4) * parseInt(t, 10));
       height = Math.round((height / 25.4) * parseInt(t, 10));
+    }
+    if (isNameCard(t)) {
+      unit = 'mm';
+      is2DScale = true;
+      width = NameCard.width;
+      height = NameCard.height;
     }
   }
   if (!is2DScale) {
