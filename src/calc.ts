@@ -46,6 +46,8 @@ const NameCard = {
   width: 91, // mm
   height: 55, // mm
 };
+const isMargin = (input: string) =>
+  /(bleed|塗り足し|ぬりたし|nuritashi|nuritasi|dobu|ドブ|どぶ)\d+/i.test(input);
 const isDpi = (t: string): boolean => /\d+dpi/i.test(t);
 const parse = (input: string[]) => {
   let width = 0;
@@ -56,14 +58,14 @@ const parse = (input: string[]) => {
     if (isAScale(t)) {
       unit = 'mm';
       is2DScale = true;
-      width = AScale[parseInt(t[1], 10)].width;
-      height = AScale[parseInt(t[1], 10)].height;
+      width += AScale[parseInt(t[1], 10)].width;
+      height += AScale[parseInt(t[1], 10)].height;
     }
     if (isBScale(t)) {
       unit = 'mm';
       is2DScale = true;
-      width = BScale[parseInt(t[1], 10)].width;
-      height = BScale[parseInt(t[1], 10)].height;
+      width += BScale[parseInt(t[1], 10)].width;
+      height += BScale[parseInt(t[1], 10)].height;
     }
     if (isDpi(t)) {
       unit = 'px';
@@ -73,8 +75,16 @@ const parse = (input: string[]) => {
     if (isNameCard(t)) {
       unit = 'mm';
       is2DScale = true;
-      width = NameCard.width;
-      height = NameCard.height;
+      width += NameCard.width;
+      height += NameCard.height;
+    }
+    if (isMargin(t)) {
+      const m = t.match(/\d+/i);
+      if (m === null) {
+        throw new Error();
+      }
+      width += parseInt(m[0], 10) * 2;
+      height += parseInt(m[0], 10) * 2;
     }
   }
   if (!is2DScale) {
