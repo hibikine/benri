@@ -31650,6 +31650,10 @@ var isNameCard = function isNameCard(input) {
   return /名刺|meishi|namecard/i.test(input);
 };
 
+var isSize = function isSize(input) {
+  return /\d+x\d+/i.test(input);
+};
+
 var NameCard = {
   width: 91,
   height: 55
@@ -31708,6 +31712,19 @@ var parse = function parse(input) {
 
       width += parseInt(m[0], 10) * 2;
       height += parseInt(m[0], 10) * 2;
+    }
+
+    if (isSize(t)) {
+      var m = t.match(/(\d+)x(\d+)/i);
+
+      if (m === null) {
+        throw new Error();
+      }
+
+      unit = 'mm';
+      is2DScale = true;
+      width += parseInt(m[1], 10);
+      height += parseInt(m[2], 10);
     }
   }
 
@@ -31977,7 +31994,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56005" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55561" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
