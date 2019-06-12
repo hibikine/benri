@@ -5,7 +5,7 @@
   "homepage": "https://hibikinekage.github.io/benri/",
   "dependencies": {
     "autoprefixer": "9.6.0",
-    "babel-jest": "20.0.3",
+    "babel-jest": "23.6.0",
     "babel-preset-react-app": "^9.0.0",
     "chalk": "2.4.2",
     "dotenv": "8.0.0",
