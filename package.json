@@ -41,7 +41,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.18",
     "babel-core": "^6.26.3",
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^2.1.0",
     "parcel": "^1.12.3",
     "prettier": "^1.18.2",
     "typescript": "^3.5.2"
