@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "parcel index.html --out-dir build",
-    "build": "parcel build index.html --out-dir build",
+    "build": "parcel build index.html --out-dir build --public-url /benri/",
     "test": "jest",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
