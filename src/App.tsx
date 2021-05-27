@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import calc from './calc';
+import { CalcVideoBytes } from './components/CalcVideoBytes';
 
 const Form = styled.form`
   margin-top: 20px;
@@ -79,6 +80,7 @@ class App extends React.Component<{}, IState> {
             ))}
           </tbody>
         </table>
+        <CalcVideoBytes />
       </Main>
     );
   }
