@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import calc from './calc';
+import { CalcDateRange } from './components/CalcDateRange';
 import { CalcVideoBytes } from './components/CalcVideoBytes';
 
 const Form = styled.form`
@@ -81,6 +82,7 @@ class App extends React.Component<{}, IState> {
           </tbody>
         </table>
         <CalcVideoBytes />
+        <CalcDateRange />
       </Main>
     );
   }
